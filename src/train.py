@@ -41,8 +41,9 @@ def get_data_from_pickle():
 def try_all():
     resultList=[]
     train_dataset, train_labels, valid_dataset, valid_labels = get_data_from_pickle()
-    score_train, score_cv = train_data(train_dataset[:10000], train_labels[:10000], valid_dataset, valid_labels, 0.33, 'sag')
-    resultList.append(['sag cv = 0.33', score_train, score_cv])
+    score_train, score_cv = train_data(train_dataset, train_labels, valid_dataset, valid_labels, 0.15, 'lbfgs')
+    resultList.append(['all data lbfgs cv = 0.15', score_train, score_cv])
+    """
     score_train, score_cv = train_data(train_dataset[:10000], train_labels[:10000], valid_dataset, valid_labels, 0.33, 'newton-cg')
     resultList.append(['newtoncg cv = 0.33', score_train, score_cv])
     score_train, score_cv = train_data(train_dataset[:10000], train_labels[:10000], valid_dataset, valid_labels, 0.33, 'lbfgs')
@@ -53,7 +54,7 @@ def try_all():
     resultList.append(['newtoncg cv = 0.15', score_train, score_cv])
     score_train, score_cv = train_data(train_dataset[:10000], train_labels[:10000], valid_dataset, valid_labels, 0.15, 'lbfgs')
     resultList.append(['libfgs cv = 0.15', score_train, score_cv])
-    """score_train, score_cv = train_data(train_dataset[:10000], train_labels[:10000], valid_dataset, valid_labels, 0.5,
+    score_train, score_cv = train_data(train_dataset[:10000], train_labels[:10000], valid_dataset, valid_labels, 0.5,
                                        'sag')
     resultList.append(['sag cv = 1.5', score_train, score_cv])
     score_train, score_cv = train_data(train_dataset[:10000], train_labels[:10000], valid_dataset, valid_labels, 0.5,
@@ -85,9 +86,10 @@ try_all()
 #  ['sag c = 0.15', 0.90029999999999999, 0.86119999999999997],
 #  ['newtoncg c = 0.15', 0.90029999999999999, 0.86119999999999997],
 #  ['libfgs c = 0.15', 0.90059999999999996, 0.86119999999999997]]
+# [['all data lbfgs cv = 0.15', 0.87687000000000004, 0.86780000000000002]] --> highest
 
 # as we see, it's mostly dependent on c, lower c lower traing score and higher validation score
-# 
+#
 
 
 
